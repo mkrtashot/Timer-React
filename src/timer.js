@@ -5,8 +5,11 @@ import Hours from "./hours";
 
 export default function Timer() {
   let [sec, setSec] = useState(0);
+  let [defSec, setDefSec] = useState(0);
   let [min, setMin] = useState(0);
+  let [defMin, setDefMin] = useState(0);
   let [hr, setHr] = useState(0);
+  let [defHr, setDefHr] = useState(0);
   let [id, setId] = useState(0);
   let [timerStarted, setTimerStarted] = useState(false);
 
@@ -39,18 +42,27 @@ export default function Timer() {
         }
       }
     }
+
+    if (timerStarted) {
+      setDefSec(0);
+      setDefMin(0);
+      setDefHr(0);
+    }
   }, [sec, id]);
 
   const HandleSec = (e) => {
     setSec(+e.target.value);
+    setDefSec(+e.target.value);
   };
 
   const HandleMin = (e) => {
     setMin(+e.target.value);
+    setDefMin(+e.target.value);
   };
 
   const HandleHr = (e) => {
     setHr(+e.target.value);
+    setDefHr(+e.target.value);
   };
 
   const startTimer = () => {
@@ -87,21 +99,21 @@ export default function Timer() {
         <div className="customizable">
           <div className="hours-part">
             <div className="hours-text">Hours</div>
-            <select id="hours" onChange={HandleHr}>
+            <select id="hours" value={defHr} onChange={HandleHr}>
               <Hours />
             </select>
           </div>
 
           <div className="minutes-part">
             <div className="minutes-tex">Minutes</div>
-            <select id="minutes" onChange={HandleMin}>
+            <select id="minutes" value={defMin} onChange={HandleMin}>
               <Minutes />
             </select>
           </div>
 
           <div className="seconds-part">
             <div className="seconds-text">Seconds</div>
-            <select id="seconds" onChange={HandleSec}>
+            <select id="seconds" value={defSec} onChange={HandleSec}>
               <Seconds />
             </select>
           </div>
