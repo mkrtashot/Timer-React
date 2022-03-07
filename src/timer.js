@@ -51,18 +51,24 @@ export default function Timer() {
   }, [sec, id]);
 
   const HandleSec = (e) => {
-    setSec(+e.target.value);
-    setDefSec(+e.target.value);
+    if (!timerStarted) {
+      setSec(+e.target.value);
+      setDefSec(+e.target.value);
+    }
   };
 
   const HandleMin = (e) => {
-    setMin(+e.target.value);
-    setDefMin(+e.target.value);
+    if (!timerStarted) {
+      setMin(+e.target.value);
+      setDefMin(+e.target.value);
+    }
   };
 
   const HandleHr = (e) => {
-    setHr(+e.target.value);
-    setDefHr(+e.target.value);
+    if (!timerStarted) {
+      setHr(+e.target.value);
+      setDefHr(+e.target.value);
+    }
   };
 
   const startTimer = () => {
